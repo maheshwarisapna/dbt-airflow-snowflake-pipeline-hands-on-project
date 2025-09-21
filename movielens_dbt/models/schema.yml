@@ -1,0 +1,32 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: RAW
+    tables:
+      - name: movie
+      - name: tags
+      - name: links
+      - name: genome_scores
+      - name: genome_tags
+
+models:
+  - name: staging_movies
+    description: "Staging model for movies table"
+    columns:
+      - name: movieid
+        tests:
+          - not_null
+          - unique
+
+  - name: staging_tags
+    description: "Staging model for tags table"
+    columns:
+      - name: userId
+        tests:
+          - not_null
+      - name: movieId
+        tests:
+          - not_null
+      - name: tag
+      - name: timestamp
